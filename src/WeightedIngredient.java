@@ -30,10 +30,6 @@ public class WeightedIngredient extends Ingridient{
 
     @Override
     public String toString() {
-        return "WeightedIngredient{" +
-                "weight=" + weight +
-                ", pricePerUnit=" + pricePerUnit +
-                ", nazivSastojka='" + nazivSastojka + '\'' +
-                '}';
+        return "" + nazivSastojka + ", kolicina: " + weight + ", cena: " + pricePerUnit;
     }
 }

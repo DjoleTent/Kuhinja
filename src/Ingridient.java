@@ -5,5 +5,7 @@ public abstract class Ingridient implements Priceable{
         this.nazivSastojka=naziv;
     }
 
-
+    public String getNazivSastojka() {
+        return nazivSastojka;
+    }
 }

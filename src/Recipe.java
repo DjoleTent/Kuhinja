@@ -18,10 +18,35 @@ public class Recipe implements Priceable {
         this.ingrs = new ArrayList<>();
     }
 
+    public String getNazivRecepta() {
+        return nazivRecepta;
+    }
+
+    public void setNazivRecepta(String nazivRecepta) {
+        this.nazivRecepta = nazivRecepta;
+    }
+
+
+    public List<WeightedIngredient> getIngrs() {
+        return ingrs;
+    }
+
+    public void setIngrs(List<WeightedIngredient> ingrs) {
+        this.ingrs = ingrs;
+    }
+
+    @Override
+    public String toString() {
+        return "Po ovom receptu se pravi: " + nazivRecepta;
+    }
 
     @Override
     public double getPrice() {
-        return 0;
+        double sum=0;
+        for(var ingr:ingrs){
+            sum+=ingr.weight*ingr.pricePerUnit;
+        }
+        return sum;
     }
 
     public void addIngrs(WeightedIngredient ingr) {
