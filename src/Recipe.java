@@ -33,7 +33,7 @@ public class Recipe implements Priceable {
     }
 
     public void getScaledRecipe(Recipe recept, double x) {
-        Recipe newScaledRecipe = new Recipe(recept.nazivRecepta + " promenjen za " + x);
+        Recipe newScaledRecipe = new Recipe(recept.nazivRecepta + (x > 100 ? " uvecan za " + (x - 100) + " posto" : " umanjen za " + (100 - x) + " posto"));
         for (var weIngr : recept.ingrs) {
             newScaledRecipe.ingrs.add(new WeightedIngredient(weIngr.nazivSastojka, weIngr.weight * x / 100, weIngr.pricePerUnit));
         }
