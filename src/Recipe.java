@@ -7,6 +7,12 @@ public class Recipe implements Priceable {
     // enum
     public List<WeightedIngredient> ingrs;
 
+
+    Recipe() {
+    }
+
+    ;
+
     public Recipe(String naziv) {
         this.nazivRecepta = naziv;
         this.ingrs = new ArrayList<>();
@@ -27,6 +33,10 @@ public class Recipe implements Priceable {
     }
 
     public void getScaledRecipe(Recipe recept, double x) {
+        Recipe newScaledRecipe = new Recipe(recept.nazivRecepta + " promenjen za " + x);
+        for (var weIngr : recept.ingrs) {
+            newScaledRecipe.ingrs.add(new WeightedIngredient(weIngr.nazivSastojka, weIngr.weight * x / 100, weIngr.pricePerUnit));
+        }
 
     }
 }
