@@ -57,12 +57,20 @@ public class Recipe implements Priceable {
         ingrs.remove(ingr);
     }
 
-    public Recipe getScaledRecipe(Recipe recept, double x) {
-        Recipe newScaledRecipe = new Recipe(recept.nazivRecepta + (x > 100 ? " uvecan za " + (x - 100) + " posto" : " umanjen za " + (100 - x) + " posto"));
-        for (var weIngr : recept.ingrs) {
-            newScaledRecipe.ingrs.add(new WeightedIngredient(weIngr.nazivSastojka, weIngr.weight * x / 100, weIngr.pricePerUnit));
-        }
-        return newScaledRecipe;
-
+//    public Recipe getScaledRecipe(Recipe recept, double x) {
+//        Recipe newScaledRecipe = new Recipe(recept.nazivRecepta + (x > 100 ? " uvecan za " + (x - 100) + " posto" : " umanjen za " + (100 - x) + " posto"));
+//        for (var weIngr : recept.ingrs) {
+//            newScaledRecipe.ingrs.add(new WeightedIngredient(weIngr.nazivSastojka, weIngr.weight * x / 100, weIngr.pricePerUnit));
+//        }
+//        return newScaledRecipe;
+//
+//    }
+public Recipe getScaledRecipe(double x) {
+    Recipe newScaledRecipe = new Recipe(this.nazivRecepta + (x > 100 ? " uvecan za " + (x - 100) + " posto" : " umanjen za " + (100 - x) + " posto"));
+    for (var weIngr : this.ingrs) {
+        newScaledRecipe.ingrs.add(new WeightedIngredient(weIngr.nazivSastojka, weIngr.weight * x / 100, weIngr.pricePerUnit));
     }
+    return newScaledRecipe;
+
+}
 }

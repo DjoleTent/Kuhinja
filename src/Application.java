@@ -12,8 +12,8 @@ public class Application {
         recept1.ingrs.add(sastojak3);
         System.out.println(recept1);
 //        System.out.println(recept1.getIngrs());
-        Recipe scaledRecept1 = recept1.getScaledRecipe(recept1, 50.0);
-        System.out.println(recept1.getScaledRecipe(recept1,50.0).getIngrs());
+        Recipe scaledRecept1 = recept1.getScaledRecipe( 50.0);
+        System.out.println(recept1.getScaledRecipe(50.0).getIngrs());
         System.out.println(scaledRecept1.ingrs);
     }
 }
