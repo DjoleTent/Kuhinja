@@ -24,5 +24,6 @@ public class Application {
         frizider.addIngr(sastojak3);
         frizider.addIngr(sastojak1);
         System.out.println(frizider.namirnice);
+        frizider.makeFoodByRecipe(recept1);
     }
 }
