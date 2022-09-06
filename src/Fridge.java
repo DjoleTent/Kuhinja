@@ -55,4 +55,18 @@ public class Fridge {
     public void removeIngr(WeightedIngredient ingr) {
         this.namirnice.remove(ingr);
     }
+    public void setZero(WeightedIngredient ingr){
+        for(var namirnica:this.namirnice){
+            if(ingr.nazivSastojka.equalsIgnoreCase(namirnica.nazivSastojka)){
+                namirnica.weight=0;
+            }
+        }
+    }
+    public void setLess(WeightedIngredient ingr){
+        for(var namirnica:this.namirnice){
+            if(ingr.nazivSastojka.equalsIgnoreCase(namirnica.nazivSastojka)){
+                namirnica.weight-= ingr.weight;
+            }
+        }
+    }
 }
