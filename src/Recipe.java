@@ -6,7 +6,7 @@ public class Recipe implements Priceable {
     public String nazivRecepta;
     // enum
     public List<WeightedIngredient> ingrs;
-
+    public PrescriptionWeight tezinaRecepta =PrescriptionWeight.BEGINNER;
 
     Recipe() {
     }
@@ -26,6 +26,13 @@ public class Recipe implements Priceable {
         this.nazivRecepta = nazivRecepta;
     }
 
+    public PrescriptionWeight getTezinaRecepta() {
+        return tezinaRecepta;
+    }
+
+    public void setTezinaRecepta(PrescriptionWeight tezinaRecepta) {
+        this.tezinaRecepta = tezinaRecepta;
+    }
 
     public List<WeightedIngredient> getIngrs() {
         return ingrs;
@@ -37,14 +44,17 @@ public class Recipe implements Priceable {
 
     @Override
     public String toString() {
+        if(ingrs.size()>0){
+            tezinaRecepta=PrescriptionWeight.EASY;
+        }
         return "Recept : " + nazivRecepta;
     }
 
     @Override
     public double getPrice() {
-        double sum=0;
-        for(var ingr:ingrs){
-            sum+=ingr.weight*ingr.pricePerUnit;
+        double sum = 0;
+        for (var ingr : ingrs) {
+            sum += ingr.weight * ingr.pricePerUnit;
         }
         return sum;
     }
@@ -58,7 +68,7 @@ public class Recipe implements Priceable {
         ingrs.remove(ingr);
     }
 
-//    public Recipe getScaledRecipe(Recipe recept, double x) {
+    //    public Recipe getScaledRecipe(Recipe recept, double x) {
 //        Recipe newScaledRecipe = new Recipe(recept.nazivRecepta + (x > 100 ? " uvecan za " + (x - 100) + " posto" : " umanjen za " + (100 - x) + " posto"));
 //        for (var weIngr : recept.ingrs) {
 //            newScaledRecipe.ingrs.add(new WeightedIngredient(weIngr.nazivSastojka, weIngr.weight * x / 100, weIngr.pricePerUnit));
@@ -66,12 +76,12 @@ public class Recipe implements Priceable {
 //        return newScaledRecipe;
 //
 //    }
-public Recipe getScaledRecipe(double x) {
-    Recipe newScaledRecipe = new Recipe(this.nazivRecepta + (x > 100 ? " uvecan za " + (x - 100) + " posto" : " umanjen za " + (100 - x) + " posto"));
-    for (var weIngr : this.ingrs) {
-        newScaledRecipe.ingrs.add(new WeightedIngredient(weIngr.nazivSastojka, weIngr.weight * x / 100, weIngr.pricePerUnit));
-    }
-    return newScaledRecipe;
+    public Recipe getScaledRecipe(double x) {
+        Recipe newScaledRecipe = new Recipe(this.nazivRecepta + (x > 100 ? " uvecan za " + (x - 100) + " posto" : " umanjen za " + (100 - x) + " posto"));
+        for (var weIngr : this.ingrs) {
+            newScaledRecipe.ingrs.add(new WeightedIngredient(weIngr.nazivSastojka, weIngr.weight * x / 100, weIngr.pricePerUnit));
+        }
+        return newScaledRecipe;
 
-}
+    }
 }

@@ -26,5 +26,6 @@ public class Application {
         System.out.println(frizider.namirnice);
         frizider.canMakeFoodByRecipe(recept1);
         frizider.makeFood(recept1);
+        System.out.println(recept1.getTezinaRecepta());
     }
 }
