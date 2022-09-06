@@ -37,7 +37,7 @@ public class Recipe implements Priceable {
 
     @Override
     public String toString() {
-        return "Po ovom receptu se pravi: " + nazivRecepta;
+        return "Recept : " + nazivRecepta;
     }
 
     @Override

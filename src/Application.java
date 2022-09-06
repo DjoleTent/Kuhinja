@@ -15,5 +15,6 @@ public class Application {
         Recipe scaledRecept1 = recept1.getScaledRecipe( 50.0);
         System.out.println(recept1.getScaledRecipe(50.0).getIngrs());
         System.out.println(scaledRecept1.ingrs);
+        System.out.println(scaledRecept1);
     }
 }
