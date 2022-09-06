@@ -49,6 +49,7 @@ public class Recipe implements Priceable {
         return sum;
     }
 
+
     public void addIngrs(WeightedIngredient ingr) {
         ingrs.add(ingr);
     }
