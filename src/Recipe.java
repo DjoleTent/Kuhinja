@@ -6,7 +6,7 @@ public class Recipe implements Priceable {
     public String nazivRecepta;
     // enum
     public List<WeightedIngredient> ingrs;
-    public PrescriptionWeight tezinaRecepta =PrescriptionWeight.BEGINNER;
+    public PrescriptionWeight tezinaRecepta = PrescriptionWeight.BEGINNER;
 
     Recipe() {
     }
@@ -44,9 +44,7 @@ public class Recipe implements Priceable {
 
     @Override
     public String toString() {
-        if(ingrs.size()>0){
-            tezinaRecepta=PrescriptionWeight.EASY;
-        }
+
         return "Recept : " + nazivRecepta;
     }
 
@@ -62,6 +60,9 @@ public class Recipe implements Priceable {
 
     public void addIngrs(WeightedIngredient ingr) {
         ingrs.add(ingr);
+        if(ingrs.size()>0){
+            tezinaRecepta=PrescriptionWeight.EASY;
+        }
     }
 
     public void removeIngrs(WeightedIngredient ingr) {

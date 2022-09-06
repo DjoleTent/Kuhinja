@@ -7,9 +7,9 @@ public class Application {
 //        System.out.println(sastojak2);
 //        System.out.println(sastojak3);
         Recipe recept1 = new Recipe("Proja");
-        recept1.ingrs.add(sastojak1);
-        recept1.ingrs.add(sastojak2);
-        recept1.ingrs.add(sastojak3);
+        recept1.addIngrs(sastojak1);
+        recept1.addIngrs(sastojak2);
+        recept1.addIngrs(sastojak3);
         System.out.println(recept1);
 //        System.out.println(recept1.getIngrs());
         Recipe scaledRecept1 = recept1.getScaledRecipe( 50.0);
