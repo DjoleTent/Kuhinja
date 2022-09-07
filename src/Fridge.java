@@ -31,7 +31,7 @@ public class Fridge {
         int brojac = 0;
         for (var namirnica : recept.ingrs) {
             for (var sastojak : this.namirnice)
-                if (this.namirnice.contains(namirnica) && namirnica.nazivSastojka.equalsIgnoreCase(sastojak.nazivSastojka) && namirnica.weight <= sastojak.weight) {
+                if (namirnica.nazivSastojka.equalsIgnoreCase(sastojak.nazivSastojka) && namirnica.weight <= sastojak.weight) {
                     brojac++;
                 }
         }
