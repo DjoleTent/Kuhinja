@@ -3,6 +3,7 @@ public class Application {
         WeightedIngredient sastojak1 = new WeightedIngredient("jogurt", 0.3, 150);
         WeightedIngredient sastojak2 = new WeightedIngredient("brasno", 0.2, 100);
         WeightedIngredient sastojak3 = new WeightedIngredient("zejtin", 0.05, 180);
+        WeightedIngredient sastojak4 = new WeightedIngredient("jaja",3,10);
 //        System.out.println(sastojak1);
 //        System.out.println(sastojak2);
 //        System.out.println(sastojak3);
@@ -10,6 +11,7 @@ public class Application {
         recept1.addIngrs(sastojak1);
         recept1.addIngrs(sastojak2);
         recept1.addIngrs(sastojak3);
+        recept1.addIngrs(sastojak4);
         System.out.println(recept1);
 //        System.out.println(recept1.getIngrs());
         Recipe scaledRecept1 = recept1.getScaledRecipe( 50.0);

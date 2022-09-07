@@ -60,7 +60,13 @@ public class Recipe implements Priceable {
 
     public void addIngrs(WeightedIngredient ingr) {
         ingrs.add(ingr);
-        if(ingrs.size()>0){
+        if(ingrs.size()>12){
+            tezinaRecepta=PrescriptionWeight.PRO;
+        } else if (ingrs.size()>9) {
+            tezinaRecepta=PrescriptionWeight.HARD;
+        } else if (ingrs.size()>6) {
+            tezinaRecepta=PrescriptionWeight.MEDIUM;
+        }else if (ingrs.size()>3) {
             tezinaRecepta=PrescriptionWeight.EASY;
         }
     }
