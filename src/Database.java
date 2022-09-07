@@ -7,7 +7,7 @@ public class Database {
 
     public static WeightedIngredient getIngr(String nazivNamirnice){
         for(var inrg:allIngrs){
-            if(nazivNamirnice.equals(inrg.nazivSastojka)) return inrg;
+            if(inrg.nazivSastojka.equals(nazivNamirnice)) return inrg;
         }
         return null;
     }
@@ -27,4 +27,11 @@ public class Database {
             if(nazivRecepta.equals(recipe.nazivRecepta)) allRecipes.remove(recipe);
         }
     }
+    public static void addIngrs(WeightedIngredient ingr) {
+        allIngrs.add(ingr);
+    }
+    public static void addRecipe(Recipe recept) {
+        allRecipes.add(recept);
+    }
+
 }
