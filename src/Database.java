@@ -5,11 +5,16 @@ public class Database {
     private static final List<WeightedIngredient> allIngrs = new ArrayList<>();
     private static final List<Recipe> allRecipes = new ArrayList<>();
 
+
+
     public static WeightedIngredient getIngr(String nazivNamirnice){
         for(var inrg:allIngrs){
             if(inrg.nazivSastojka.equals(nazivNamirnice)) return inrg;
         }
         return null;
+    }
+    public static List<WeightedIngredient> getAllIngrs(){
+        return new ArrayList<>(allIngrs);
     }
     public static Recipe getRecipe(String nazivRecepta){
         for(var oneRecipe:allRecipes){

@@ -1,5 +1,8 @@
 public class Application {
     public static void main(String[] args) {
+
+        // BAZA SASTOJAKA
+
         WeightedIngredient sastojak1 = new WeightedIngredient("jogurt", 0.3, 150);
         WeightedIngredient sastojak2 = new WeightedIngredient("brasno", 0.2, 100);
         WeightedIngredient sastojak3 = new WeightedIngredient("zejtin", 0.05, 180);
@@ -30,7 +33,11 @@ public class Application {
         Database.addIngrs(sastojak13);
         Database.addIngrs(sastojak14);
         Database.addIngrs(sastojak15);
+        var x = Database.getAllIngrs();
+        System.out.println("------------------------------------");
+//        System.out.println(x);
 
+        // BAZA RECEPATA
 
 
 //        System.out.println(sastojak1);
@@ -41,24 +48,39 @@ public class Application {
         recept1.addIngrs(sastojak2);
         recept1.addIngrs(sastojak3);
         recept1.addIngrs(sastojak4);
-        Database.addIngrs(sastojak1);
-        System.out.println(recept1);
+        Recipe recept2= new Recipe("Omlet");
+        recept2.addIngrs(sastojak3);
+        recept2.addIngrs(sastojak4);
+        recept2.addIngrs(sastojak10);
+
+
+        Database.addRecipe(recept1);
+        Database.addRecipe(recept2);
+
+
+        //////////////////////////////////////////////////////////////// KRAJ BAZA
+
+        var y = Database.getRecipe("Proja");
+        System.out.println("++++++++++++++++++++++++++++++");
+        System.out.println(y);
+
+//        System.out.println(recept1);
 //        System.out.println(recept1.getIngrs());
         Recipe scaledRecept1 = recept1.getScaledRecipe( 50.0);
 //        System.out.println(recept1.getScaledRecipe(50.0).getIngrs());
-        System.out.println(scaledRecept1.ingrs);
-        System.out.println(scaledRecept1);
+//        System.out.println(scaledRecept1.ingrs);
+//        System.out.println(scaledRecept1);
 //        System.out.println(recept1.getPrice());
 //        System.out.println(scaledRecept1.getPrice());
         Fridge frizider = new Fridge();
         frizider.addIngr(sastojak1);
         frizider.addIngr(sastojak2);
         frizider.addIngr(sastojak3);
-        frizider.addIngr(sastojak1);
-        System.out.println(frizider.namirnice);
+        frizider.addIngr(sastojak4);
+//        System.out.println(frizider.namirnice);
         frizider.canMakeFoodByRecipe(recept1);
         frizider.makeFood(recept1);
-        System.out.println(recept1.getTezinaRecepta());
-        System.out.println(Database.getIngr("jogurt"));
+//        System.out.println(recept1.getTezinaRecepta());
+
     }
 }
