@@ -22,6 +22,9 @@ public class Database {
         }
         return null;
     }
+    public static List<Recipe> getAllRecipes(){
+        return new ArrayList<>(allRecipes);
+    }
     public static void deleteIngr(String nazivSastojka){
         for(var ingr:allIngrs){
             if(nazivSastojka.equalsIgnoreCase(ingr.nazivSastojka)) allIngrs.remove(ingr);

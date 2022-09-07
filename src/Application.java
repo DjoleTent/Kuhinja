@@ -1,3 +1,5 @@
+import java.util.ArrayList;
+
 public class Application {
     public static void main(String[] args) {
 
@@ -126,20 +128,21 @@ public class Application {
         recept10.addIngrs(sastojak8);
         recept10.addIngrs(sastojak10);
 
-
-
-
-
-
-
-
-
-
-
-
+        ////////////// SMESTANJE U BAZE //////////////////
         Database.addRecipe(recept1);
         Database.addRecipe(recept2);
         Database.addRecipe(recept3);
+        Database.addRecipe(recept4);
+        Database.addRecipe(recept5);
+        Database.addRecipe(recept6);
+        Database.addRecipe(recept7);
+        Database.addRecipe(recept8);
+        Database.addRecipe(recept9);
+        Database.addRecipe(recept10);
+
+        var r = Database.getAllRecipes();
+        System.out.println(r);
+
 
         //////////////////////////////////////////////////////////////// KRAJ BAZA
 
@@ -156,7 +159,7 @@ public class Application {
 //        System.out.println(recept1.getPrice());
 //        System.out.println(scaledRecept1.getPrice());
         Fridge frizider = new Fridge();
-        WeightedIngredient sastojak111 = new WeightedIngredient("jogurt", 0.2, 150);
+        WeightedIngredient sastojak111 = new WeightedIngredient("jogurt", 0.3, 150);
 
         frizider.addIngr(sastojak111);
         frizider.addIngr(sastojak2);

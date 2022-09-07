@@ -7,6 +7,11 @@ public class WeightedIngredient extends Ingridient{
         this.pricePerUnit=pricePerUnit;
     }
 
+    public void getScaledIngr(double n){
+        this.weight=this.weight*n/100;
+    }
+
+
     @Override
     public double getPrice() {
         return weight*pricePerUnit;
