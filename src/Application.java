@@ -241,23 +241,23 @@ public class Application {
         dobroDosli();
         Scanner s = new Scanner(System.in);
 
-        int unos = s.nextInt();
-        while (unos != 11) {
+        String unos = s.next();
+        while (!unos.equalsIgnoreCase("11")) {
             switch (unos) {
-                case 0:
+                case "0":
                     dobroDosli();
-                    unos = s.nextInt();
+                    unos = s.next();
                     break;
 
-                case 1:
+                case "1":
                     System.out.println("Unesite naziv namirnice, njenu kolicnu i kolika je cena namirnice(jedinicna/kg): ");
                     frizider.addIngr(new WeightedIngredient(s.next(), s.nextDouble(), s.nextDouble()));
                     System.out.println("Baka Vam se zahvaljuje na namirnici.");
                     System.out.println("Da li zelite jos nesto?");
                     System.out.println("Ako zelite da vidite ponovo listu mogucnosti - ukucajte 0");
-                    unos = s.nextInt();
+                    unos = s.next();
                     break;
-                case 2:
+                case "2":
                     System.out.println("Sta i koliko biste uzeli iz frizidera? Unesite naziv namirnice: ");
                     String namirnica = s.next();
                     s.nextLine();
@@ -266,18 +266,18 @@ public class Application {
                     frizider.setLess(namirnica, kolicina);
                     System.out.println("Da li zelite jos nesto?");
                     System.out.println("Ako zelite da vidite ponovo listu mogucnosti - ukucajte 0");
-                    unos = s.nextInt();
+                    unos = s.next();
                     break;
-                case 3:
+                case "3":
                     System.out.println("Sa namirnicama iz frizidera mogu da se naprave sledeca jela: ");
                     for (var recept : Database.getAllRecipes()) {
                         frizider.canMakeFoodByRecipe(recept);
                     }
                     System.out.println("Da li zelite jos nesto?");
                     System.out.println("Ako zelite da vidite ponovo listu mogucnosti - ukucajte 0");
-                    unos = s.nextInt();
+                    unos = s.next();
                     break;
-                case 4:
+                case "4":
                     System.out.println("Pola porcije je: ");
                     for (var recept : Database.getAllRecipes()) {
                         recept.getScaledRecipe(50);
@@ -287,18 +287,18 @@ public class Application {
                     }
                     System.out.println("Da li zelite jos nesto?");
                     System.out.println("Ako zelite da vidite ponovo listu mogucnosti - ukucajte 0");
-                    unos = s.nextInt();
+                    unos = s.next();
                     break;
-                case 5:
+                case "5":
                     System.out.println("Koje jelo biste zeleli?");
                     String jelo = s.next();
                     s.nextLine();
                     frizider.makeFood(daLiPostojiRecept(jelo));
                     System.out.println("Da li zelite jos nesto?");
                     System.out.println("Ako zelite da vidite ponovo listu mogucnosti - ukucajte 0");
-                    unos = s.nextInt();
+                    unos = s.next();
                     break;
-                case 6:
+                case "6":
                     System.out.println("Unesite sumu novca: ");
                     double novac = s.nextDouble();
                     double min = MAX_VALUE;
@@ -317,9 +317,9 @@ public class Application {
                     }
                     System.out.println("Da li zelite jos nesto?");
                     System.out.println("Ako zelite da vidite ponovo listu mogucnosti - ukucajte 0");
-                    unos = s.nextInt();
+                    unos = s.next();
                     break;
-                case 7:
+                case "7":
                     System.out.println("Razvsrtava ih po broju sastojaka koje koristi za pripremanje recepta.");
                     System.out.println("Unesite tezinu recepta koja Vas interesuje (begginer,easy,medium,hard,pro): ");
                     String tezina=s.next();
@@ -351,9 +351,17 @@ public class Application {
                     }
                     System.out.println("Da li zelite jos nesto?");
                     System.out.println("Ako zelite da vidite ponovo listu mogucnosti - ukucajte 0");
-                    unos = s.nextInt();
+                    unos = s.next();
                     break;
-                case 8:
+                case "8":
+                case "9":
+                case "10":
+                default:
+                    System.out.println("Pogresan unos.");
+                    System.out.println("Da li zelite jos nesto?");
+                    System.out.println("Ako zelite da vidite ponovo listu mogucnosti - ukucajte 0");
+                    unos = s.next();
+                    break;
             }
         }
         System.out.println("Dovidjenja! Baka Milunka Vas pozdravlja do sledeceg vidjenja.");
