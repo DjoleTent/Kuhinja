@@ -83,8 +83,8 @@ public class Application {
         Database.addIngrs(sastojak024.getScaledIngr(300));
 
         var x = Database.getAllIngrs();
-        System.out.println("------------------------------------");
-        System.out.println(x);
+//        System.out.println("------------------------------------");
+//        System.out.println(x);
 
         // BAZA RECEPATA
 
@@ -171,7 +171,7 @@ public class Application {
         Database.addRecipe(recept10);
 
         var r = Database.getAllRecipes();
-        System.out.println(r);
+//        System.out.println(r);
 
 
         //////////////////////////////////////////////////////////////// KRAJ BAZA

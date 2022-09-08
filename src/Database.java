@@ -36,10 +36,20 @@ public class Database {
         }
     }
     public static void addIngrs(WeightedIngredient ingr) {
-        allIngrs.add(ingr);
+        if (!allIngrs.contains(ingr)) {
+            allIngrs.add(ingr);
+        } else {
+            for (var namirnica : allIngrs) {
+                if (ingr.nazivSastojka.equalsIgnoreCase(namirnica.nazivSastojka)) {
+                    namirnica.weight += ingr.weight;
+                }
+            }
+        }
     }
     public static void addRecipe(Recipe recept) {
-        allRecipes.add(recept);
+        if(!allRecipes.contains(recept)) {
+            allRecipes.add(recept);
+        }
     }
 
 }
