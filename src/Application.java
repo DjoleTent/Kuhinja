@@ -1,9 +1,12 @@
 import java.util.ArrayList;
 import java.util.Scanner;
 
+import static java.lang.Long.MAX_VALUE;
+import static java.lang.Long.MIN_VALUE;
+
 public class Application {
 
-    public static void dobroDosli(){
+    public static void dobroDosli() {
         System.out.println("Ako ste baki doneli namirnice - ukucajte 1" +
                 "\nAko zelite da pozajmite nesto iz bakinog frizidera - ukucajte 2" +
                 "\nUkoliko vas interesuje sta baka moze trenutno da Vam napravi za jelo - ukucajte 3" +
@@ -15,8 +18,18 @@ public class Application {
                 "\nKako baka razvstava jela po tezini - ukucajte 9" +
                 "\nKoliko je baki potrebno novca da spremi sva jela za koje ima namirnice u frizideru - ukucajte 10" +
                 "\nIpak ne zelite nista iz bakine kuhinje - ukucajte 11");
-        System.out.println("Unesite broj od 1 do 11");
+        System.out.println("Unesite broj od 1 do 11: ");
     }
+
+    public static Recipe daLiPostojiRecept(String jelo) {
+        for (var recept : Database.getAllRecipes()) {
+            if (recept.nazivRecepta.equalsIgnoreCase(jelo)) {
+                return recept;
+            }
+        }
+        return null;
+    }
+
     public static void main(String[] args) {
 
         // BAZA SASTOJAKA
@@ -146,12 +159,12 @@ public class Application {
         recept6.addIngrs(sastojak016.getScaledIngr(50));
         recept6.addIngrs(sastojak017.getScaledIngr(50));
         recept6.addIngrs(sastojak018.getScaledIngr(200));
-        Recipe recept7 = new Recipe("Pasulj - klot");
+        Recipe recept7 = new Recipe("Pasulj-klot");
         recept7.addIngrs(sastojak02.getScaledIngr(1));
         recept7.addIngrs(sastojak010.getScaledIngr(1));
         recept7.addIngrs(sastojak019.getScaledIngr(40));
         recept7.addIngrs(sastojak020.getScaledIngr(1));
-        Recipe recept8 = new Recipe("Bakin kolac");
+        Recipe recept8 = new Recipe("Bakin-kolac");
         recept8.addIngrs(sastojak02.getScaledIngr(60));
         recept8.addIngrs(sastojak03.getScaledIngr(30));
         recept8.addIngrs(sastojak04.getScaledIngr(400));
@@ -229,43 +242,118 @@ public class Application {
         Scanner s = new Scanner(System.in);
 
         int unos = s.nextInt();
-        while (unos!=11){
-            switch (unos){
+        while (unos != 11) {
+            switch (unos) {
+                case 0:
+                    dobroDosli();
+                    unos = s.nextInt();
+                    break;
+
                 case 1:
                     System.out.println("Unesite naziv namirnice, njenu kolicnu i kolika je cena namirnice(jedinicna/kg): ");
-                    frizider.addIngr(new WeightedIngredient(s.next(),s.nextDouble(),s.nextDouble()));
+                    frizider.addIngr(new WeightedIngredient(s.next(), s.nextDouble(), s.nextDouble()));
                     System.out.println("Baka Vam se zahvaljuje na namirnici.");
                     System.out.println("Da li zelite jos nesto?");
-                    dobroDosli();
-                    unos=s.nextInt();
+                    System.out.println("Ako zelite da vidite ponovo listu mogucnosti - ukucajte 0");
+                    unos = s.nextInt();
                     break;
                 case 2:
-                    System.out.println("Sta i koliko biste uzeli iz frizidera? Unesite naziv namirnice i kolicinu: ");
-                    frizider.setLess(s.next(),s.nextDouble());
+                    System.out.println("Sta i koliko biste uzeli iz frizidera? Unesite naziv namirnice: ");
+                    String namirnica = s.next();
+                    s.nextLine();
+                    System.out.println("Unesite i kolicinu: ");
+                    double kolicina = s.nextDouble();
+                    frizider.setLess(namirnica, kolicina);
                     System.out.println("Da li zelite jos nesto?");
-                    dobroDosli();
-                    unos=s.nextInt();
+                    System.out.println("Ako zelite da vidite ponovo listu mogucnosti - ukucajte 0");
+                    unos = s.nextInt();
                     break;
                 case 3:
                     System.out.println("Sa namirnicama iz frizidera mogu da se naprave sledeca jela: ");
-                    for(var recept: Database.getAllRecipes()){
+                    for (var recept : Database.getAllRecipes()) {
                         frizider.canMakeFoodByRecipe(recept);
                     }
                     System.out.println("Da li zelite jos nesto?");
-                    dobroDosli();
-                    unos=s.nextInt();
+                    System.out.println("Ako zelite da vidite ponovo listu mogucnosti - ukucajte 0");
+                    unos = s.nextInt();
                     break;
                 case 4:
-                    for(var recept: Database.getAllRecipes()){
+                    System.out.println("Pola porcije je: ");
+                    for (var recept : Database.getAllRecipes()) {
                         recept.getScaledRecipe(50);
                     }
-                    for(var recept: Database.getAllRecipes()){
+                    for (var recept : Database.getAllRecipes()) {
                         frizider.canMakeFoodByRecipe(recept);
                     }
                     System.out.println("Da li zelite jos nesto?");
-                    dobroDosli();
-                    unos=s.nextInt();
+                    System.out.println("Ako zelite da vidite ponovo listu mogucnosti - ukucajte 0");
+                    unos = s.nextInt();
                     break;
+                case 5:
+                    System.out.println("Koje jelo biste zeleli?");
+                    String jelo = s.next();
+                    s.nextLine();
+                    frizider.makeFood(daLiPostojiRecept(jelo));
+                    System.out.println("Da li zelite jos nesto?");
+                    System.out.println("Ako zelite da vidite ponovo listu mogucnosti - ukucajte 0");
+                    unos = s.nextInt();
+                    break;
+                case 6:
+                    System.out.println("Unesite sumu novca: ");
+                    double novac = s.nextDouble();
+                    double min = MAX_VALUE;
+                    System.out.println("Za ovu sumu novac moguce je napraviti: ");
+                    for (var recept : Database.getAllRecipes()) {
+                        if (recept.getPrice() < novac) {
+                            System.out.print(recept.nazivRecepta + ".....");
+                            if (recept.getPrice() < min) {
+                                min = recept.getPrice();
+                            }
+                        }
+                    }
+                    System.out.println();
+                    if (novac < min) {
+                        System.out.println("Trenutno ni jedno jelo po receptima baka Milunke.");
+                    }
+                    System.out.println("Da li zelite jos nesto?");
+                    System.out.println("Ako zelite da vidite ponovo listu mogucnosti - ukucajte 0");
+                    unos = s.nextInt();
+                    break;
+                case 7:
+                    System.out.println("Razvsrtava ih po broju sastojaka koje koristi za pripremanje recepta.");
+                    System.out.println("Unesite tezinu recepta koja Vas interesuje (begginer,easy,medium,hard,pro): ");
+                    String tezina=s.next();
+                    PrescriptionWeight per = null;
+                    switch (tezina){
+                        case "begginer":
+                            per=PrescriptionWeight.BEGINNER;
+                            break;
+                        case "easy":
+                            per=PrescriptionWeight.EASY;
+                            break;
+                        case "medium":
+                            per=PrescriptionWeight.MEDIUM;
+                            break;
+                        case "hard":
+                            per=PrescriptionWeight.HARD;
+                            break;
+                        case "pro":
+                            per=PrescriptionWeight.PRO;
+                            break;
+                        default:
+                            System.out.println("Pogresan unos.");
+                    }
+
+                    for(var recept:Database.getAllRecipes()){
+                        if(recept.tezinaRecepta==per){
+                            System.out.println(recept);
+                        }
+                    }
+                    System.out.println("Da li zelite jos nesto?");
+                    System.out.println("Ako zelite da vidite ponovo listu mogucnosti - ukucajte 0");
+                    unos = s.nextInt();
+                    break;
+                case 8:
             }
         }
         System.out.println("Dovidjenja! Baka Milunka Vas pozdravlja do sledeceg vidjenja.");

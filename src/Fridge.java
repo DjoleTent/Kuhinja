@@ -29,27 +29,32 @@ public class Fridge {
 
     public int helpCanMakeFoodByRecipe(Recipe recept) {
         int brojac = 0;
-        for (var namirnica : recept.ingrs) {
-            for (var sastojak : this.namirnice)
-                if (namirnica.nazivSastojka.equalsIgnoreCase(sastojak.nazivSastojka) && namirnica.weight <= sastojak.weight) {
-                    brojac++;
-                }
+        if(recept!=null) {
+            for (var namirnica : recept.ingrs) {
+                for (var sastojak : this.namirnice)
+                    if (namirnica.nazivSastojka.equalsIgnoreCase(sastojak.nazivSastojka) && namirnica.weight <= sastojak.weight) {
+                        brojac++;
+                    }
+            }
         }
         return brojac;
     }
 
     public void makeFood(Recipe recept) {
-        if (helpCanMakeFoodByRecipe(recept) == recept.ingrs.size()) {
-            for (var namirnica : recept.ingrs) {
-                for (var sastojak : this.namirnice) {
-                    if (namirnica.nazivSastojka.equalsIgnoreCase(sastojak.nazivSastojka)) {
-                        sastojak.weight -= namirnica.weight;
+        if (recept != null) {
+            if (helpCanMakeFoodByRecipe(recept) == recept.ingrs.size()) {
+                for (var namirnica : recept.ingrs) {
+                    for (var sastojak : this.namirnice) {
+                        if (namirnica.nazivSastojka.equalsIgnoreCase(sastojak.nazivSastojka)) {
+                            sastojak.weight -= namirnica.weight;
+                        }
                     }
                 }
-            }
-            System.out.println("Jelo po receptu je napravljeno. Prijatno.");
-        } else System.out.println("Nemamo dovoljno kolicine sastojka da se napravi jelo po receptu.");
+                System.out.println("Jelo po receptu je napravljeno. Prijatno.");
+            } else System.out.println("Nemamo dovoljno kolicine sastojka da se napravi jelo po receptu.");
+        } else System.out.println("Takvog jela nema na bakinom meniju.");
     }
+
 
 
     public void removeIngr(WeightedIngredient ingr) {
