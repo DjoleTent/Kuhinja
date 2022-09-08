@@ -42,10 +42,18 @@ public class Recipe implements Priceable {
         this.ingrs = ingrs;
     }
 
+
+    public String ispisNazivaSastojka(){
+        String tekst="";
+        for(var ingr:ingrs){
+            tekst+= ingr.nazivSastojka + ", ";
+        }
+        return tekst.trim().substring(0,tekst.length()-2);
+    }
     @Override
     public String toString() {
 
-        return "Recept : " + nazivRecepta;
+        return "Recept : " + nazivRecepta + " ("  + ispisNazivaSastojka() +")";
     }
 
     @Override

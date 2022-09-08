@@ -201,6 +201,7 @@ public class Application {
         frizider.canMakeFoodByRecipe(recept1);
         frizider.makeFood(recept1);
 //        System.out.println(recept1.getTezinaRecepta());
+        System.out.println(Database.getRecipe("bakin kolac"));
 
     }
 }
