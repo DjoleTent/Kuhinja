@@ -1,4 +1,5 @@
 import java.util.ArrayList;
+import java.util.Scanner;
 
 public class Application {
     public static void main(String[] args) {
@@ -47,15 +48,15 @@ public class Application {
         WeightedIngredient sastojak013 = new WeightedIngredient("kackavalj", 1, 756);
         WeightedIngredient sastojak014 = new WeightedIngredient("kecap", 1, 202);
         WeightedIngredient sastojak015 = new WeightedIngredient("majonez", 1, 208);
-        WeightedIngredient sastojak016 = new WeightedIngredient("testenine",1,421);
-        WeightedIngredient sastojak017 = new WeightedIngredient("mesano meso",1,522);
-        WeightedIngredient sastojak018 = new WeightedIngredient("crni luk", 1,16);
-        WeightedIngredient sastojak019 = new WeightedIngredient("pasulj", 1,89);
-        WeightedIngredient sastojak020 = new WeightedIngredient("aleva paprika", 1,550);
-        WeightedIngredient sastojak021 = new WeightedIngredient("secer", 1,109);
-        WeightedIngredient sastojak022 = new WeightedIngredient("limun", 1,286);
-        WeightedIngredient sastojak023 = new WeightedIngredient("prasak za pecivo", 1,12);
-        WeightedIngredient sastojak024 = new WeightedIngredient("kvasac",1,72);
+        WeightedIngredient sastojak016 = new WeightedIngredient("testenine", 1, 421);
+        WeightedIngredient sastojak017 = new WeightedIngredient("mesano meso", 1, 522);
+        WeightedIngredient sastojak018 = new WeightedIngredient("crni luk", 1, 16);
+        WeightedIngredient sastojak019 = new WeightedIngredient("pasulj", 1, 89);
+        WeightedIngredient sastojak020 = new WeightedIngredient("aleva paprika", 1, 550);
+        WeightedIngredient sastojak021 = new WeightedIngredient("secer", 1, 109);
+        WeightedIngredient sastojak022 = new WeightedIngredient("limun", 1, 286);
+        WeightedIngredient sastojak023 = new WeightedIngredient("prasak za pecivo", 1, 12);
+        WeightedIngredient sastojak024 = new WeightedIngredient("kvasac", 1, 72);
 
         Database.addIngrs(sastojak01.getScaledIngr(300));
         Database.addIngrs(sastojak02.getScaledIngr(200));
@@ -122,7 +123,7 @@ public class Application {
         recept5.addIngrs(sastojak05.getScaledIngr(25));
         recept5.addIngrs(sastojak011.getScaledIngr(5));
         recept5.addIngrs(sastojak012.getScaledIngr(2));
-        Recipe recept6= new Recipe("Bolonjeze");
+        Recipe recept6 = new Recipe("Bolonjeze");
         recept6.addIngrs(sastojak03.getScaledIngr(1));
         recept6.addIngrs(sastojak07.getScaledIngr(20));
         recept6.addIngrs(sastojak010.getScaledIngr(1));
@@ -189,19 +190,48 @@ public class Application {
 //        System.out.println(recept1.getPrice());
 //        System.out.println(scaledRecept1.getPrice());
         Fridge frizider = new Fridge();
-        WeightedIngredient sastojak111 = new WeightedIngredient("jogurt", 1, 150);
-
-        frizider.addIngr(sastojak111);
-        frizider.addIngr(sastojak02);
-        frizider.addIngr(sastojak03);
-        frizider.addIngr(sastojak04);
-        frizider.addIngr(sastojak010);
-        frizider.addIngr(sastojak021);
+//        WeightedIngredient sastojak111 = new WeightedIngredient("jogurt", 1, 150);
+//
+//        frizider.addIngr(sastojak111);
+//        frizider.addIngr(sastojak02);
+//        frizider.addIngr(sastojak03);
+//        frizider.addIngr(sastojak04);
+//        frizider.addIngr(sastojak010);
+//        frizider.addIngr(sastojak021);
 //        System.out.println(frizider.namirnice);
-        frizider.canMakeFoodByRecipe(recept1);
-        frizider.makeFood(recept1);
+//        frizider.canMakeFoodByRecipe(recept1);
+//        frizider.makeFood(recept1);
 //        System.out.println(recept1.getTezinaRecepta());
-        System.out.println(Database.getRecipe("bakin kolac"));
+//        System.out.println(Database.getRecipe("bakin kolac"));
+        for (var ingr : Database.getAllIngrs()) {
+            frizider.addIngr(ingr);
+        }
+        System.out.println("Dobro dosli u Bakinu domacu kuhinju!");
+        System.out.println("Ljubazna baka Milunka Vam je na usluzi. Koji je razlog Vaseg dolaska u bakinu kuhinju?");
+        System.out.println("Ako ste baki doneli namirnice - ukucajte 1" +
+                "\nAko zelite da pozajmite nesto iz bakinog frizidera - ukucajte 2" +
+                "\nUkoliko vas interesuje sta baka moze trenutno da Vam napravi za jelo - ukucajte 3" +
+                "\nZelite da znate sta sve baka moze upola da spremi za Vas - ukucajte 4" +
+                "\nZelete da pojedete nesto - ukucajte 5" +
+                "\nZelite da pojedete nesto ali da to jelo baku ne kosta vise od odredjene sume novca - ukucajte 6" +
+                "\nKako baka razvrstava jela po tezini - ukucajte 7" +
+                "\nKoja sve jela baka moze da Vam spremi za odredjenu svotu novca i odredjene tezine jela - ukucajte 8" +
+                "\nKako baka razvstava jela po tezini - ukucajte 9" +
+                "\nKoliko je baki potrebno novca da spremi sva jela za koje ima namirnice u frizideru - ukucajte 10" +
+                "\nIpak ne zelite nista iz bakine kuhinje - ukucajte 11");
+        Scanner s = new Scanner(System.in);
+        System.out.println("Unesite broj od 1 do 11");
+        int unos = s.nextInt();
+        while (unos!=11){
+            switch (unos){
+                case 1:
+                    System.out.println("Unesite naziv namirnice, njenu kolicnu i kolika je cena namirnice(jedinicna/kg)");
+                    frizider.addIngr(new WeightedIngredient(s.next(),s.nextDouble(),s.nextDouble()));
+                    System.out.println("Baka Vam se zahvaljuje na namirnici");
+                    unos=s.nextInt();
+            }
+        }
+
 
     }
 }
