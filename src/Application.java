@@ -247,10 +247,28 @@ public class Application {
                     unos=s.nextInt();
                     break;
                 case 3:
-
+                    System.out.println("Sa namirnicama iz frizidera mogu da se naprave sledeca jela: ");
+                    for(var recept: Database.getAllRecipes()){
+                        frizider.canMakeFoodByRecipe(recept);
+                    }
+                    System.out.println("Da li zelite jos nesto?");
+                    dobroDosli();
+                    unos=s.nextInt();
+                    break;
+                case 4:
+                    for(var recept: Database.getAllRecipes()){
+                        recept.getScaledRecipe(50);
+                    }
+                    for(var recept: Database.getAllRecipes()){
+                        frizider.canMakeFoodByRecipe(recept);
+                    }
+                    System.out.println("Da li zelite jos nesto?");
+                    dobroDosli();
+                    unos=s.nextInt();
+                    break;
             }
         }
-        System.out.println("Dovidjenja, baka Milunka Vas pozdravlja i zeli da se ponovo vidite uskoro.");
+        System.out.println("Dovidjenja! Baka Milunka Vas pozdravlja do sledeceg vidjenja.");
 
     }
 }
