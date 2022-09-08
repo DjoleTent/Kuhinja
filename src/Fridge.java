@@ -42,8 +42,8 @@ public class Fridge {
         if (helpCanMakeFoodByRecipe(recept) == recept.ingrs.size()) {
             for (var namirnica : recept.ingrs) {
                 for (var sastojak : this.namirnice) {
-                    if (namirnica.nazivSastojka.equalsIgnoreCase(sastojak.nazivSastojka)){
-                        sastojak.weight-= namirnica.weight;
+                    if (namirnica.nazivSastojka.equalsIgnoreCase(sastojak.nazivSastojka)) {
+                        sastojak.weight -= namirnica.weight;
                     }
                 }
             }
@@ -55,18 +55,27 @@ public class Fridge {
     public void removeIngr(WeightedIngredient ingr) {
         this.namirnice.remove(ingr);
     }
-    public void setZero(WeightedIngredient ingr){
-        for(var namirnica:this.namirnice){
-            if(ingr.nazivSastojka.equalsIgnoreCase(namirnica.nazivSastojka)){
-                namirnica.weight=0;
+
+    public void setZero(String nazivNamirnice) {
+        for (var namirnica : this.namirnice) {
+            if (nazivNamirnice.equalsIgnoreCase(namirnica.nazivSastojka)) {
+                namirnica.weight = 0;
             }
         }
     }
-    public void setLess(WeightedIngredient ingr){
-        for(var namirnica:this.namirnice){
-            if(ingr.nazivSastojka.equalsIgnoreCase(namirnica.nazivSastojka)){
-                namirnica.weight-= ingr.weight;
+
+    public void setLess(String nazivNamirnice, double kolicina) {
+
+        for (var namirnica : this.namirnice) {
+            if (nazivNamirnice.equalsIgnoreCase(namirnica.nazivSastojka) && kolicina <= namirnica.weight) {
+                namirnica.weight -= kolicina;
+                System.out.println("U frizideru je bilo dovoljna kolicina namirnice koju ste trazili.");
+                return;
+            } else if (nazivNamirnice.equalsIgnoreCase(namirnica.nazivSastojka) && kolicina > namirnica.weight) {
+                System.out.println("Nema trazene kolicine namirnice u frizideru.");
+                return;
             }
         }
+        System.out.println("Ne postoji ta namirnica u frizideru.");
     }
 }

@@ -2,6 +2,21 @@ import java.util.ArrayList;
 import java.util.Scanner;
 
 public class Application {
+
+    public static void dobroDosli(){
+        System.out.println("Ako ste baki doneli namirnice - ukucajte 1" +
+                "\nAko zelite da pozajmite nesto iz bakinog frizidera - ukucajte 2" +
+                "\nUkoliko vas interesuje sta baka moze trenutno da Vam napravi za jelo - ukucajte 3" +
+                "\nZelite da znate sta sve baka moze upola da spremi za Vas - ukucajte 4" +
+                "\nZelete da pojedete nesto - ukucajte 5" +
+                "\nZelite da pojedete nesto ali da to jelo baku ne kosta vise od odredjene sume novca - ukucajte 6" +
+                "\nKako baka razvrstava jela po tezini - ukucajte 7" +
+                "\nKoja sve jela baka moze da Vam spremi za odredjenu svotu novca i odredjene tezine jela - ukucajte 8" +
+                "\nKako baka razvstava jela po tezini - ukucajte 9" +
+                "\nKoliko je baki potrebno novca da spremi sva jela za koje ima namirnice u frizideru - ukucajte 10" +
+                "\nIpak ne zelite nista iz bakine kuhinje - ukucajte 11");
+        System.out.println("Unesite broj od 1 do 11");
+    }
     public static void main(String[] args) {
 
         // BAZA SASTOJAKA
@@ -208,30 +223,34 @@ public class Application {
         }
         System.out.println("Dobro dosli u Bakinu domacu kuhinju!");
         System.out.println("Ljubazna baka Milunka Vam je na usluzi. Koji je razlog Vaseg dolaska u bakinu kuhinju?");
-        System.out.println("Ako ste baki doneli namirnice - ukucajte 1" +
-                "\nAko zelite da pozajmite nesto iz bakinog frizidera - ukucajte 2" +
-                "\nUkoliko vas interesuje sta baka moze trenutno da Vam napravi za jelo - ukucajte 3" +
-                "\nZelite da znate sta sve baka moze upola da spremi za Vas - ukucajte 4" +
-                "\nZelete da pojedete nesto - ukucajte 5" +
-                "\nZelite da pojedete nesto ali da to jelo baku ne kosta vise od odredjene sume novca - ukucajte 6" +
-                "\nKako baka razvrstava jela po tezini - ukucajte 7" +
-                "\nKoja sve jela baka moze da Vam spremi za odredjenu svotu novca i odredjene tezine jela - ukucajte 8" +
-                "\nKako baka razvstava jela po tezini - ukucajte 9" +
-                "\nKoliko je baki potrebno novca da spremi sva jela za koje ima namirnice u frizideru - ukucajte 10" +
-                "\nIpak ne zelite nista iz bakine kuhinje - ukucajte 11");
+
+
+        dobroDosli();
         Scanner s = new Scanner(System.in);
-        System.out.println("Unesite broj od 1 do 11");
+
         int unos = s.nextInt();
         while (unos!=11){
             switch (unos){
                 case 1:
-                    System.out.println("Unesite naziv namirnice, njenu kolicnu i kolika je cena namirnice(jedinicna/kg)");
+                    System.out.println("Unesite naziv namirnice, njenu kolicnu i kolika je cena namirnice(jedinicna/kg): ");
                     frizider.addIngr(new WeightedIngredient(s.next(),s.nextDouble(),s.nextDouble()));
-                    System.out.println("Baka Vam se zahvaljuje na namirnici");
+                    System.out.println("Baka Vam se zahvaljuje na namirnici.");
+                    System.out.println("Da li zelite jos nesto?");
+                    dobroDosli();
                     unos=s.nextInt();
+                    break;
+                case 2:
+                    System.out.println("Sta i koliko biste uzeli iz frizidera? Unesite naziv namirnice i kolicinu: ");
+                    frizider.setLess(s.next(),s.nextDouble());
+                    System.out.println("Da li zelite jos nesto?");
+                    dobroDosli();
+                    unos=s.nextInt();
+                    break;
+                case 3:
+
             }
         }
-
+        System.out.println("Dovidjenja, baka Milunka Vas pozdravlja i zeli da se ponovo vidite uskoro.");
 
     }
 }
