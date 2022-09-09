@@ -14,7 +14,7 @@ public class Application {
                 "\nZelete da pojedete nesto - ukucajte 5" +
                 "\nZelite da pojedete nesto ali da to jelo baku ne kosta vise od odredjene sume novca - ukucajte 6" +
                 "\nKako baka razvrstava jela po tezini - ukucajte 7" +
-                "\nKoja sve jela baka moze da Vam spremi za odredjenu svotu novca i odredjene tezine jela - ukucajte 8" +
+                "\nKoja sve jela baka moze da Vam spremi za odredjenu svotu novca i odredjene tezine - ukucajte 8" +
                 "\nKako baka razvstava jela po tezini - ukucajte 9" +
                 "\nKoliko je baki potrebno novca da spremi sva jela za koje ima namirnice u frizideru - ukucajte 10" +
                 "\nIpak ne zelite nista iz bakine kuhinje - ukucajte 11");
@@ -138,13 +138,13 @@ public class Application {
         recept3.addIngrs(sastojak013.getScaledIngr(10));
         recept3.addIngrs(sastojak014.getScaledIngr(5));
         recept3.addIngrs(sastojak015.getScaledIngr(3));
-        Recipe recept4 = new Recipe("Slatka palacinka");
+        Recipe recept4 = new Recipe("Slatka-palacinka");
         recept4.addIngrs(sastojak02.getScaledIngr(10));
         recept4.addIngrs(sastojak03.getScaledIngr(5));
         recept4.addIngrs(sastojak04.getScaledIngr(100));
         recept4.addIngrs(sastojak05.getScaledIngr(25));
         recept4.addIngrs(sastojak09.getScaledIngr(5));
-        Recipe recept5 = new Recipe("Slana palacinka");
+        Recipe recept5 = new Recipe("Slana-palacinka");
         recept5.addIngrs(sastojak02.getScaledIngr(10));
         recept5.addIngrs(sastojak03.getScaledIngr(5));
         recept5.addIngrs(sastojak04.getScaledIngr(100));
@@ -172,7 +172,7 @@ public class Application {
         recept8.addIngrs(sastojak021.getScaledIngr(30));
         recept8.addIngrs(sastojak022.getScaledIngr(50));
         recept8.addIngrs(sastojak023.getScaledIngr(100));
-        Recipe recept9 = new Recipe("Kiflice sa sirom");
+        Recipe recept9 = new Recipe("Kiflice-sa-sirom");
         recept9.addIngrs(sastojak02.getScaledIngr(100));
         recept9.addIngrs(sastojak03.getScaledIngr(20));
         recept9.addIngrs(sastojak05.getScaledIngr(50));
@@ -181,7 +181,7 @@ public class Application {
         recept9.addIngrs(sastojak024.getScaledIngr(100));
         recept9.addIngrs(sastojak012.getScaledIngr(25));
         recept9.addIngrs(sastojak04.getScaledIngr(200));
-        Recipe recept10 = new Recipe("Kajgana sa kobasicom");
+        Recipe recept10 = new Recipe("Kajgana-sa-kobasicom");
         recept10.addIngrs(sastojak03.getScaledIngr(2));
         recept10.addIngrs(sastojak04.getScaledIngr(300));
         recept10.addIngrs(sastojak08.getScaledIngr(15));
@@ -291,6 +291,7 @@ public class Application {
                     break;
                 case "5":
                     System.out.println("Koje jelo biste zeleli?");
+                    System.out.println("Jela sa vise reci u imenu pisite sa '-' izmedju");
                     String jelo = s.next();
                     s.nextLine();
                     frizider.makeFood(daLiPostojiRecept(jelo));
@@ -354,6 +355,40 @@ public class Application {
                     unos = s.next();
                     break;
                 case "8":
+                    System.out.println("Unesite sumu za koju biste zeleli recept: ");
+                    double suma = s.nextDouble();
+                    System.out.println("Unesite tezinu jela koju biste zeleli (begginer,easy,medium,hard,pro): ");
+                    String tezinaJela = s.next();
+                    PrescriptionWeight per8 = null;
+                    switch (tezinaJela){
+                        case "begginer":
+                            per8=PrescriptionWeight.BEGINNER;
+                            break;
+                        case "easy":
+                            per8=PrescriptionWeight.EASY;
+                            break;
+                        case "medium":
+                            per8=PrescriptionWeight.MEDIUM;
+                            break;
+                        case "hard":
+                            per8=PrescriptionWeight.HARD;
+                            break;
+                        case "pro":
+                            per8=PrescriptionWeight.PRO;
+                            break;
+                        default:
+                            System.out.println("Pogresan unos.");
+                    }
+                    for(var recept:Database.getAllRecipes()){
+                        if(suma>=recept.getPrice() && recept.tezinaRecepta==per8){
+                            System.out.println(recept);
+                        }
+                    }
+                    System.out.println("Da li zelite jos nesto?");
+                    System.out.println("Ako zelite da vidite ponovo listu mogucnosti - ukucajte 0");
+                    unos = s.next();
+                    break;
+
                 case "9":
                 case "10":
                 default:

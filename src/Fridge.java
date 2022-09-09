@@ -23,7 +23,7 @@ public class Fridge {
     public void canMakeFoodByRecipe(Recipe recept) {
 
         if (helpCanMakeFoodByRecipe(recept) == recept.ingrs.size()) {
-            System.out.println("Moguce je pripremiti "+recept.nazivRecepta+" po receptu sa namirnicama iz frizidera.");
+            System.out.println("Moguce je pripremiti za recept: "+recept.nazivRecepta+", sa namirnicama iz frizidera.");
         } else System.out.println("Nije moguce pripremiti "+recept.nazivRecepta+" po receptu.");
     }
 
