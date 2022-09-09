@@ -461,7 +461,19 @@ public class Application {
                     unos = s.next();
                     break;
                 case "14":
-
+                    System.out.println("Unesite sumu novac do koje biste zeleli omiljeno jelo: ");
+                    double sumaOmiljeno=s.nextDouble();
+                    System.out.println("Takva jela su: ");
+                    for(var omiljeni:Database.getAllFavoriteRecipes()){
+                        if(omiljeni.getPrice()<sumaOmiljeno){
+                            System.out.println(omiljeni);
+                        }
+                    }
+                    System.out.println("(Postoji mogucnost da ne postoje takva jela do unete sume)");
+                    System.out.println("Da li zelite jos nesto?");
+                    System.out.println("Ako zelite da vidite ponovo listu mogucnosti - ukucajte 0");
+                    unos = s.next();
+                    break;
                 default:
                     System.out.println("Pogresan unos.");
                     System.out.println("Da li zelite jos nesto?");
