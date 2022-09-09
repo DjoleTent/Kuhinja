@@ -15,7 +15,7 @@ public class Application {
                 "\nKako baka razvrstava jela po tezini - ukucajte 7" +
                 "\nKoja sve jela baka moze da Vam spremi za odredjenu svotu novca i odredjene tezine - ukucajte 8" +
                 "\nKako baka razvstava jela po tezini - ukucajte 9" +
-                "\nKoliko je baki potrebno novca da spremi sva jela za koje ima namirnice u frizideru - ukucajte 10" +
+                "\nZamolite baku da Vam nabroji jela od najnize do najvise cene - ukucajte 10" +
                 "\nIpak ne zelite nista iz bakine kuhinje - ukucajte 11");
         System.out.println("Unesite broj od 1 do 11: ");
     }
@@ -421,13 +421,26 @@ public class Application {
 
                     break;
                 case "10":
-                    ArrayList<Double> listaCena = new ArrayList<>();
+                    List<Double> listaCena = new ArrayList<>();
 
                     for (var recept:Database.getAllRecipes()) {
                             listaCena.add(recept.getPrice());
                     }
 
-                    System.out.println(listaCena);
+                    Collections.sort(listaCena);
+
+                    for(var pojedinacnaCena:listaCena){
+                        for(var recept:Database.getAllRecipes()){
+                            if(pojedinacnaCena==recept.getPrice()){
+                                System.out.println(recept);
+                            }
+                        }
+                    }
+
+                    System.out.println("Da li zelite jos nesto?");
+                    System.out.println("Ako zelite da vidite ponovo listu mogucnosti - ukucajte 0");
+                    unos = s.next();
+                    break;
                 default:
                     System.out.println("Pogresan unos.");
                     System.out.println("Da li zelite jos nesto?");
