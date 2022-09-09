@@ -33,30 +33,7 @@ public class Application {
 
         // BAZA SASTOJAKA
 
-//        WeightedIngredient sastojak1 = new WeightedIngredient("jogurt", 0.3, 150);
-//        WeightedIngredient sastojak2 = new WeightedIngredient("brasno", 0.2, 100);
-//        WeightedIngredient sastojak3 = new WeightedIngredient("ulje", 0.05, 180);
-//        WeightedIngredient sastojak4 = new WeightedIngredient("jaja", 30, 10);
-//        WeightedIngredient sastojak5 = new WeightedIngredient("mleko", 5, 180);
-//        WeightedIngredient sastojak6 = new WeightedIngredient("paradajz", 2, 200);
-//        WeightedIngredient sastojak7 = new WeightedIngredient("bolonjeze-sos", 1, 175);
-//        WeightedIngredient sastojak8 = new WeightedIngredient("virsle", 3, 110);
-//        WeightedIngredient sastojak9 = new WeightedIngredient("sladoled", 2, 400);
-//        WeightedIngredient sastojak10 = new WeightedIngredient("so", 1, 136);
-//        WeightedIngredient sastojak11 = new WeightedIngredient("salama", 0.5, 250);
-//        WeightedIngredient sastojak12 = new WeightedIngredient("sir", 3, 300);
-//        WeightedIngredient sastojak13 = new WeightedIngredient("kackavalj", 1, 756);
-//        WeightedIngredient sastojak14 = new WeightedIngredient("kecap", 1, 202);
-//        WeightedIngredient sastojak15 = new WeightedIngredient("majonez", 1, 208);
-//        WeightedIngredient sastojak16 = new WeightedIngredient("testenine",3,421);
-//        WeightedIngredient sastojak17 = new WeightedIngredient("mesano meso",2,522);
-//        WeightedIngredient sastojak18 = new WeightedIngredient("crni luk", 8,16);
-//        WeightedIngredient sastojak19 = new WeightedIngredient("pasulj", 2,89);
-//        WeightedIngredient sastojak20 = new WeightedIngredient("aleva paprika", 0.2,115);
-//        WeightedIngredient sastojak21 = new WeightedIngredient("secer", 5,109);
-//        WeightedIngredient sastojak22 = new WeightedIngredient("limun", 0.5,286);
-//        WeightedIngredient sastojak23 = new WeightedIngredient("prasak za pecivo", 0.2,120);
-//        WeightedIngredient sastojak24 = new WeightedIngredient("kvasac",0.1,72);
+
 
         ////////////////////// sastojci za recepte /////////////////////////////
 
@@ -383,6 +360,7 @@ public class Application {
                             System.out.println(recept);
                         }
                     }
+                    System.out.println("(Postoji mogucnost da za unetu sumu novca i unetu tezine nema nijednog recepta)");
                     System.out.println("Da li zelite jos nesto?");
                     System.out.println("Ako zelite da vidite ponovo listu mogucnosti - ukucajte 0");
                     unos = s.next();
@@ -428,7 +406,7 @@ public class Application {
                     }
 
                     Collections.sort(listaCena);
-
+                    System.out.println("Od najjeftinijeg jela do najskupljeg: ");
                     for(var pojedinacnaCena:listaCena){
                         for(var recept:Database.getAllRecipes()){
                             if(pojedinacnaCena==recept.getPrice()){
