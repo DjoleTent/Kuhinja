@@ -389,6 +389,36 @@ public class Application {
                     break;
 
                 case "9":
+                    System.out.println("Od najtezeg do najlakse jela: ");
+                    for(var recept:Database.getAllRecipes()){
+                        if(recept.tezinaRecepta==PrescriptionWeight.PRO){
+                            System.out.println(recept);
+                        }
+                    }
+                    for(var recept:Database.getAllRecipes()){
+                        if(recept.tezinaRecepta==PrescriptionWeight.HARD){
+                            System.out.println(recept);
+                        }
+                    }
+                    for(var recept:Database.getAllRecipes()){
+                        if(recept.tezinaRecepta==PrescriptionWeight.MEDIUM){
+                            System.out.println(recept);
+                        }
+                    }
+                    for(var recept:Database.getAllRecipes()){
+                        if(recept.tezinaRecepta==PrescriptionWeight.EASY){
+                            System.out.println(recept);
+                        }
+                    }
+                    for(var recept:Database.getAllRecipes()){
+                        if(recept.tezinaRecepta==PrescriptionWeight.BEGINNER){
+                            System.out.println(recept);
+                        }
+                    }
+                    System.out.println("Da li zelite jos nesto?");
+                    System.out.println("Ako zelite da vidite ponovo listu mogucnosti - ukucajte 0");
+                    unos = s.next();
+                    break;
                 case "10":
                 default:
                     System.out.println("Pogresan unos.");
