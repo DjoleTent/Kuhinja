@@ -22,6 +22,7 @@ public class Application {
                 "\nVidite omiljene recepte do odredjene svote novca - ukucajte 14" +
                 "\nIpak ne zelite nista iz bakine kuhinje - ukucajte 15");
         System.out.println("Unesite broj od 1 do 14: ");
+
     }
 
     public static Recipe daLiPostojiRecept(String jelo) {
