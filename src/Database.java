@@ -5,7 +5,38 @@ public class Database {
     private static final List<WeightedIngredient> allIngrs = new ArrayList<>();
     private static final List<Recipe> allRecipes = new ArrayList<>();
 
+    private static final List<Recipe> favoriteRecipes = new ArrayList<>();
 
+    public static Recipe getFavoriteRecipe(String nazivRecepta){
+        for(var oneRecipe:favoriteRecipes){
+            if(nazivRecepta.equalsIgnoreCase(oneRecipe.nazivRecepta)) return oneRecipe;
+        }
+        return null;
+    }
+    public static void addFavoriteRecipe(Recipe recept) {
+        if(!favoriteRecipes.contains(recept)) {
+            favoriteRecipes.add(recept);
+        }
+    }
+    public static void removeFavoriteRecipe(String nazivRecepta){
+        for(var omiljeni:Database.getAllFavoriteRecipes()){
+            if(nazivRecepta.equalsIgnoreCase(omiljeni.nazivRecepta)){
+                favoriteRecipes.remove(omiljeni);
+                System.out.println("Jelo je uklonjeno iz omiljenih.");
+            }
+        }
+    }
+    public static void addFavoriteRecipePoNazivu(String nazivJela) {
+        for(var recept:Database.getAllRecipes()){
+            if(nazivJela.equalsIgnoreCase(recept.nazivRecepta) && !favoriteRecipes.contains(recept)){
+                Database.addFavoriteRecipe(recept);
+                System.out.println("Jelo je dodato u omiljene.");
+            }
+        }
+    }
+    public static List<Recipe> getAllFavoriteRecipes(){
+        return new ArrayList<>(favoriteRecipes);
+    }
 
     public static WeightedIngredient getIngr(String nazivNamirnice){
         for(var inrg:allIngrs){
@@ -51,5 +82,6 @@ public class Database {
             allRecipes.add(recept);
         }
     }
+
 
 }

@@ -16,8 +16,12 @@ public class Application {
                 "\nKoja sve jela baka moze da Vam spremi za odredjenu svotu novca i odredjene tezine - ukucajte 8" +
                 "\nKako baka razvstava jela po tezini - ukucajte 9" +
                 "\nZamolite baku da Vam nabroji jela od najnize do najvise cene - ukucajte 10" +
-                "\nIpak ne zelite nista iz bakine kuhinje - ukucajte 11");
-        System.out.println("Unesite broj od 1 do 11: ");
+                "\nUkoliko zelite da izaberete neko jelo koje ce Vam biti omiljeno - ukucajte 11" +
+                "\nVidite svoje omiljene recepte - ukucajte 12" +
+                "\nDodajte ili izbrisite omiljene recepte - ukucajte 13" +
+                "\nVidite omiljene recepte do odredjene svote novca - ukucajte 14" +
+                "\nIpak ne zelite nista iz bakine kuhinje - ukucajte 15");
+        System.out.println("Unesite broj od 1 do 14: ");
     }
 
     public static Recipe daLiPostojiRecept(String jelo) {
@@ -32,7 +36,6 @@ public class Application {
     public static void main(String[] args) {
 
         // BAZA SASTOJAKA
-
 
 
         ////////////////////// sastojci za recepte /////////////////////////////
@@ -175,8 +178,15 @@ public class Application {
         Database.addRecipe(recept9);
         Database.addRecipe(recept10);
 
-        var r = Database.getAllRecipes();
+//        var r = Database.getAllRecipes();
 //        System.out.println(r);
+
+        /////////// DODAVANEJ OMILJENIH RECEPATA U BAZU ////////////////////
+
+//        Database.addFavoriteRecipe(recept1);
+//        Database.addFavoriteRecipe(recept3);
+//        Database.addFavoriteRecipe(recept4);
+//        Database.addFavoriteRecipe(recept7);
 
 
         //////////////////////////////////////////////////////////////// KRAJ BAZA
@@ -187,13 +197,17 @@ public class Application {
 
 //        System.out.println(recept1);
 //        System.out.println(recept1.getIngrs());
-        Recipe scaledRecept1 = recept1.getScaledRecipe(50.0);
+//        Recipe scaledRecept1 = recept1.getScaledRecipe(50.0);
 //        System.out.println(recept1.getScaledRecipe(50.0).getIngrs());
 //        System.out.println(scaledRecept1.ingrs);
 //        System.out.println(scaledRecept1);
 //        System.out.println(recept1.getPrice());
 //        System.out.println(scaledRecept1.getPrice());
+
+
         Fridge frizider = new Fridge();
+
+
 //        WeightedIngredient sastojak111 = new WeightedIngredient("jogurt", 1, 150);
 //
 //        frizider.addIngr(sastojak111);
@@ -218,7 +232,7 @@ public class Application {
         Scanner s = new Scanner(System.in);
 
         String unos = s.next();
-        while (!unos.equalsIgnoreCase("11")) {
+        while (!unos.equalsIgnoreCase("15")) {
             switch (unos) {
                 case "0":
                     dobroDosli();
@@ -299,30 +313,30 @@ public class Application {
                 case "7":
                     System.out.println("Razvsrtava ih po broju sastojaka koje koristi za pripremanje recepta.");
                     System.out.println("Unesite tezinu recepta koja Vas interesuje (begginer,easy,medium,hard,pro): ");
-                    String tezina=s.next();
+                    String tezina = s.next();
                     PrescriptionWeight per = null;
-                    switch (tezina){
+                    switch (tezina) {
                         case "begginer":
-                            per=PrescriptionWeight.BEGINNER;
+                            per = PrescriptionWeight.BEGINNER;
                             break;
                         case "easy":
-                            per=PrescriptionWeight.EASY;
+                            per = PrescriptionWeight.EASY;
                             break;
                         case "medium":
-                            per=PrescriptionWeight.MEDIUM;
+                            per = PrescriptionWeight.MEDIUM;
                             break;
                         case "hard":
-                            per=PrescriptionWeight.HARD;
+                            per = PrescriptionWeight.HARD;
                             break;
                         case "pro":
-                            per=PrescriptionWeight.PRO;
+                            per = PrescriptionWeight.PRO;
                             break;
                         default:
                             System.out.println("Pogresan unos.");
                     }
 
-                    for(var recept:Database.getAllRecipes()){
-                        if(recept.tezinaRecepta==per){
+                    for (var recept : Database.getAllRecipes()) {
+                        if (recept.tezinaRecepta == per) {
                             System.out.println(recept);
                         }
                     }
@@ -336,27 +350,27 @@ public class Application {
                     System.out.println("Unesite tezinu jela koju biste zeleli (begginer,easy,medium,hard,pro): ");
                     String tezinaJela = s.next();
                     PrescriptionWeight per8 = null;
-                    switch (tezinaJela){
+                    switch (tezinaJela) {
                         case "begginer":
-                            per8=PrescriptionWeight.BEGINNER;
+                            per8 = PrescriptionWeight.BEGINNER;
                             break;
                         case "easy":
-                            per8=PrescriptionWeight.EASY;
+                            per8 = PrescriptionWeight.EASY;
                             break;
                         case "medium":
-                            per8=PrescriptionWeight.MEDIUM;
+                            per8 = PrescriptionWeight.MEDIUM;
                             break;
                         case "hard":
-                            per8=PrescriptionWeight.HARD;
+                            per8 = PrescriptionWeight.HARD;
                             break;
                         case "pro":
-                            per8=PrescriptionWeight.PRO;
+                            per8 = PrescriptionWeight.PRO;
                             break;
                         default:
                             System.out.println("Pogresan unos.");
                     }
-                    for(var recept:Database.getAllRecipes()){
-                        if(suma>=recept.getPrice() && recept.tezinaRecepta==per8){
+                    for (var recept : Database.getAllRecipes()) {
+                        if (suma >= recept.getPrice() && recept.tezinaRecepta == per8) {
                             System.out.println(recept);
                         }
                     }
@@ -368,28 +382,28 @@ public class Application {
 
                 case "9":
                     System.out.println("Od najtezeg do najlakse jela: ");
-                    for(var recept:Database.getAllRecipes()){
-                        if(recept.tezinaRecepta==PrescriptionWeight.PRO){
+                    for (var recept : Database.getAllRecipes()) {
+                        if (recept.tezinaRecepta == PrescriptionWeight.PRO) {
                             System.out.println(recept);
                         }
                     }
-                    for(var recept:Database.getAllRecipes()){
-                        if(recept.tezinaRecepta==PrescriptionWeight.HARD){
+                    for (var recept : Database.getAllRecipes()) {
+                        if (recept.tezinaRecepta == PrescriptionWeight.HARD) {
                             System.out.println(recept);
                         }
                     }
-                    for(var recept:Database.getAllRecipes()){
-                        if(recept.tezinaRecepta==PrescriptionWeight.MEDIUM){
+                    for (var recept : Database.getAllRecipes()) {
+                        if (recept.tezinaRecepta == PrescriptionWeight.MEDIUM) {
                             System.out.println(recept);
                         }
                     }
-                    for(var recept:Database.getAllRecipes()){
-                        if(recept.tezinaRecepta==PrescriptionWeight.EASY){
+                    for (var recept : Database.getAllRecipes()) {
+                        if (recept.tezinaRecepta == PrescriptionWeight.EASY) {
                             System.out.println(recept);
                         }
                     }
-                    for(var recept:Database.getAllRecipes()){
-                        if(recept.tezinaRecepta==PrescriptionWeight.BEGINNER){
+                    for (var recept : Database.getAllRecipes()) {
+                        if (recept.tezinaRecepta == PrescriptionWeight.BEGINNER) {
                             System.out.println(recept);
                         }
                     }
@@ -401,15 +415,15 @@ public class Application {
                 case "10":
                     List<Double> listaCena = new ArrayList<>();
 
-                    for (var recept:Database.getAllRecipes()) {
-                            listaCena.add(recept.getPrice());
+                    for (var recept : Database.getAllRecipes()) {
+                        listaCena.add(recept.getPrice());
                     }
 
                     Collections.sort(listaCena);
                     System.out.println("Od najjeftinijeg jela do najskupljeg: ");
-                    for(var pojedinacnaCena:listaCena){
-                        for(var recept:Database.getAllRecipes()){
-                            if(pojedinacnaCena==recept.getPrice()){
+                    for (var pojedinacnaCena : listaCena) {
+                        for (var recept : Database.getAllRecipes()) {
+                            if (pojedinacnaCena == recept.getPrice()) {
                                 System.out.println(recept);
                             }
                         }
@@ -419,6 +433,35 @@ public class Application {
                     System.out.println("Ako zelite da vidite ponovo listu mogucnosti - ukucajte 0");
                     unos = s.next();
                     break;
+                case "11":
+                    System.out.println("Dodajte jelo u Vase omiljene: ");
+                    Database.addFavoriteRecipePoNazivu(s.next());
+                    System.out.println("(Ako Vam baka nije potvrdila da je dodala jelo u Vase omiljene recepte, znaci da ste pogresno uneli naziv recepta.)");
+                    System.out.println("Da li zelite jos nesto?");
+                    System.out.println("Ako zelite da vidite ponovo listu mogucnosti - ukucajte 0");
+                    unos = s.next();
+                    break;
+                case "12":
+                    System.out.println("Vasa omiljena jela su: ");
+                    System.out.println("(Ako niste uneli, unesite preko opcije 11)");
+                    for(var omiljena:Database.getAllFavoriteRecipes()){
+                        System.out.println(omiljena);
+                    }
+
+                    System.out.println("Da li zelite jos nesto?");
+                    System.out.println("Ako zelite da vidite ponovo listu mogucnosti - ukucajte 0");
+                    unos = s.next();
+                    break;
+                case "13":
+                    System.out.println("Unesite naziv omiljenog recepta koji zelite da uklonite iz liste omiljenih: ");
+                    Database.removeFavoriteRecipe(s.next());
+                    System.out.println("Za dodavanje koristite opciju 11");
+                    System.out.println("Da li zelite jos nesto?");
+                    System.out.println("Ako zelite da vidite ponovo listu mogucnosti - ukucajte 0");
+                    unos = s.next();
+                    break;
+                case "14":
+
                 default:
                     System.out.println("Pogresan unos.");
                     System.out.println("Da li zelite jos nesto?");
