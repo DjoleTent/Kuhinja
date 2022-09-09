@@ -418,8 +418,16 @@ public class Application {
                     System.out.println("Da li zelite jos nesto?");
                     System.out.println("Ako zelite da vidite ponovo listu mogucnosti - ukucajte 0");
                     unos = s.next();
+
                     break;
                 case "10":
+                    ArrayList<Double> listaCena = new ArrayList<>();
+
+                    for (var recept:Database.getAllRecipes()) {
+                            listaCena.add(recept.getPrice());
+                    }
+
+                    System.out.println(listaCena);
                 default:
                     System.out.println("Pogresan unos.");
                     System.out.println("Da li zelite jos nesto?");
