@@ -18,7 +18,7 @@ public class Application {
                 "\nZamolite baku da Vam nabroji jela od najnize do najvise cene - ukucajte 10" +
                 "\nUkoliko zelite da izaberete neko jelo koje ce Vam biti omiljeno - ukucajte 11" +
                 "\nVidite svoje omiljene recepte - ukucajte 12" +
-                "\nDodajte ili izbrisite omiljene recepte - ukucajte 13" +
+                "\nIzbrisite omiljene recepte - ukucajte 13" +
                 "\nVidite omiljene recepte do odredjene svote novca - ukucajte 14" +
                 "\nIpak ne zelite nista iz bakine kuhinje - ukucajte 15");
         System.out.println("Unesite broj od 1 do 14: ");
@@ -294,7 +294,7 @@ public class Application {
                     System.out.println("Unesite sumu novca: ");
                     double novac = s.nextDouble();
                     double min = MAX_VALUE;
-                    System.out.println("Za ovu sumu novac moguce je napraviti: ");
+                    System.out.println("Za ovu sumu novca moguce je napraviti: ");
                     for (var recept : Database.getAllRecipes()) {
                         if (recept.getPrice() < novac) {
                             System.out.print(recept.nazivRecepta + ".....");
@@ -456,6 +456,7 @@ public class Application {
                 case "13":
                     System.out.println("Unesite naziv omiljenog recepta koji zelite da uklonite iz liste omiljenih: ");
                     Database.removeFavoriteRecipe(s.next());
+                    System.out.println("(Ukoliko Vam baka nije potvrdila da je jelo uneto, probajte ponovo)");
                     System.out.println("Za dodavanje koristite opciju 11");
                     System.out.println("Da li zelite jos nesto?");
                     System.out.println("Ako zelite da vidite ponovo listu mogucnosti - ukucajte 0");
