@@ -14,7 +14,7 @@ public class Application {
                 "\nZelite da pojedete nesto ali da to jelo baku ne kosta vise od odredjene sume novca - ukucajte 6" +
                 "\nKako baka razvrstava jela po tezini - ukucajte 7" +
                 "\nKoja sve jela baka moze da Vam spremi za odredjenu svotu novca i odredjene tezine - ukucajte 8" +
-                "\nKako baka razvstava jela po tezini - ukucajte 9" +
+                "\nKako baka sortira jela po tezini - ukucajte 9" +
                 "\nZamolite baku da Vam nabroji jela od najnize do najvise cene - ukucajte 10" +
                 "\nUkoliko zelite da izaberete neko jelo koje ce Vam biti omiljeno - ukucajte 11" +
                 "\nVidite svoje omiljene recepte - ukucajte 12" +
@@ -464,7 +464,13 @@ public class Application {
                     break;
                 case "14":
                     System.out.println("Unesite sumu novac do koje biste zeleli omiljeno jelo: ");
-                    double sumaOmiljeno=s.nextDouble();
+                    double sumaOmiljeno=0;
+                    try {
+                        sumaOmiljeno = s.nextDouble();
+                    } catch (Exception e){
+                        unos = s.next();
+                        break;
+                    }
                     System.out.println("Takva jela su: ");
                     for(var omiljeni:Database.getAllFavoriteRecipes()){
                         if(omiljeni.getPrice()<sumaOmiljeno){
