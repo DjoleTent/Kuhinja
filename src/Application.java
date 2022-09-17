@@ -242,8 +242,14 @@ public class Application {
 
                 case "1":
                     System.out.println("Unesite naziv namirnice, njenu kolicnu i kolika je cena namirnice(jedinicna/kg): ");
-                    frizider.addIngr(new WeightedIngredient(s.next(), s.nextDouble(), s.nextDouble()));
-                    System.out.println("Baka Vam se zahvaljuje na namirnici.");
+                    try{frizider.addIngr(new WeightedIngredient(s.next(), s.nextDouble(), s.nextDouble()));
+                        System.out.println("Baka Vam se zahvaljuje na namirnici.");}
+                    catch (Exception e){
+                        System.out.println("Pogresan unos.");
+                        s.next();
+                        continue;
+                    }
+
                     System.out.println("Da li zelite jos nesto?");
                     System.out.println("Ako zelite da vidite ponovo listu mogucnosti - ukucajte 0");
                     unos = s.next();
@@ -253,7 +259,13 @@ public class Application {
                     String namirnica = s.next();
                     s.nextLine();
                     System.out.println("Unesite i kolicinu: ");
-                    double kolicina = s.nextDouble();
+                    double kolicina=MIN_VALUE;
+                    try{
+                    kolicina = s.nextDouble();
+                } catch (Exception e){
+                        unos = s.next();
+                        break;
+                }
                     frizider.setLess(namirnica, kolicina);
                     System.out.println("Da li zelite jos nesto?");
                     System.out.println("Ako zelite da vidite ponovo listu mogucnosti - ukucajte 0");
@@ -291,8 +303,14 @@ public class Application {
                     unos = s.next();
                     break;
                 case "6":
+                    double novac=MIN_VALUE;
                     System.out.println("Unesite sumu novca: ");
-                    double novac = s.nextDouble();
+                try{
+                    novac = s.nextDouble();
+                } catch (Exception e){
+                    unos = s.next();
+                    break;
+                }
                     double min = MAX_VALUE;
                     System.out.println("Za ovu sumu novca moguce je napraviti: ");
                     for (var recept : Database.getAllRecipes()) {
@@ -347,7 +365,13 @@ public class Application {
                     break;
                 case "8":
                     System.out.println("Unesite sumu za koju biste zeleli recept: ");
-                    double suma = s.nextDouble();
+                    double suma = MIN_VALUE;
+                    try{
+                    suma = s.nextDouble();
+                }catch (Exception e){
+                        unos = s.next();
+                        break;
+                }
                     System.out.println("Unesite tezinu jela koju biste zeleli (begginer,easy,medium,hard,pro): ");
                     String tezinaJela = s.next();
                     PrescriptionWeight per8 = null;
